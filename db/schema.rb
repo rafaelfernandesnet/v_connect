@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722204157) do
+ActiveRecord::Schema.define(version: 20150722204321) do
+
+  create_table "favourites", force: :cascade do |t|
+    t.integer  "employer_id"
+    t.integer  "student_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "favourites", ["employer_id"], name: "index_favourites_on_employer_id"
+  add_index "favourites", ["student_id"], name: "index_favourites_on_student_id"
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
@@ -28,6 +38,8 @@ ActiveRecord::Schema.define(version: 20150722204157) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "posts", ["employer_id"], name: "index_posts_on_employer_id"
 
   create_table "students", force: :cascade do |t|
     t.string   "first_name"
