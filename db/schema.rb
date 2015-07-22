@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(version: 20150722204321) do
 
   create_table "favourites", force: :cascade do |t|
-    t.integer  "employer_id"
+    t.integer  "organization_id"
     t.integer  "student_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  add_index "favourites", ["employer_id"], name: "index_favourites_on_employer_id"
+  add_index "favourites", ["organization_id"], name: "index_favourites_on_organization_id"
   add_index "favourites", ["student_id"], name: "index_favourites_on_student_id"
 
   create_table "organizations", force: :cascade do |t|
@@ -32,14 +32,14 @@ ActiveRecord::Schema.define(version: 20150722204321) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer  "employer_id"
+    t.integer  "organization_id"
     t.string   "title"
     t.string   "content"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  add_index "posts", ["employer_id"], name: "index_posts_on_employer_id"
+  add_index "posts", ["organization_id"], name: "index_posts_on_organization_id"
 
   create_table "students", force: :cascade do |t|
     t.string   "first_name"
