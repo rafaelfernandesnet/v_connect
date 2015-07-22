@@ -53,3 +53,8 @@ desc 'Retrieves the current schema version number'
 task "db:version" do
   puts "Current version: #{ActiveRecord::Migrator.current_version}"
 end
+
+# desc 'Populate the database with seed information'
+# task "db:populate" do
+#   'db/seed.rb'
+# end
