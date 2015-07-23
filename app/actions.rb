@@ -1,5 +1,6 @@
 # Homepage (Root path)
 get '/' do
+  session[:id] = Student.find_by(id:1)
   erb :index
 end
 
