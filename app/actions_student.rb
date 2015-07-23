@@ -1,5 +1,6 @@
 #display all students that are registered
 get '/students' do 
+  @errors = []
   @students = Student.all
   erb :'students/index'
 end
@@ -20,6 +21,7 @@ end
 
 #a student can see their favourite organizations
 get '/students/:id/organizations' do
+  @errors = []
   @student = Student.find(params[:id])
   @organizations = @student.organizations
   erb :'organizations/index'
@@ -52,3 +54,24 @@ post '/student/session' do
     erb :'students/login'
   end
 end
+
+post '/favourite' do 
+  fav_found = Favourite.exists?(student_id: student_id, organization_id: params[:organization_id])
+  @errors = []
+  if fav_found
+    @errors << ["You've already favoured this organization, you can see it on your profile :)"]
+    "******************"
+    redirect '/organizations'  
+  else
+    Favourite.create(
+      student_id: student_id,
+      organization_id: params[:organization_id]
+    )
+    @organizations = Organization.all
+    erb :'organizations/index'
+  end
+end
+
+#students need a favourite button on the list of organizations page
+#can only favourite once - button disappears if already favourited, replace with a star?
+#favoured organizations will show up on their profile page(already set up on separate favourites page)
