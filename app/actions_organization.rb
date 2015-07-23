@@ -13,3 +13,10 @@ get '/organizations/:id/students' do
   erb :'students/index'
 end
 
+get '/organization/profile' do
+  @organization = Organization.find_by(id: session[:id])
+  if @organization
+    erb :'/organization/show'
+  else redirect '/'
+  end
+end
