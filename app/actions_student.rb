@@ -1,26 +1,7 @@
-# Homepage (Root path)
-
-# TODO: authorize logged in student
-helpers do
-  def current_student
-    Student.find(session[:id]) if session[:id]
-  end
-  def current_student?
-    session[:id].nil?
-  end
-end
-
-get '/' do
-  erb :index
-end
-
-# temporary routes
-get '/registered' do
-  'registered!'
-end
-
-get '/loggedin' do
-  'logged in!'
+#display all students that are registered
+get '/students' do 
+  @students = Student.all
+  erb :'students/index'
 end
 
 # student sign up page
