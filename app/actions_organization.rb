@@ -19,6 +19,15 @@ get '/organizations/session' do
   erb :'organizations/login' #TODO: combine this with the student login
 end
 
+get '/organizations/profile' do
+  @organization = Organization.find(session[:org_id])
+  if @organization
+    erb :'/organizations/show'
+  else 
+    redirect '/'
+  end
+end
+
 #an organization can see a list of interested students
 get '/organizations/:id/students' do
   #TODO: refactor erb file using partials
@@ -35,7 +44,7 @@ post '/organizations' do
   @organization.password_confirmation = params[:password2]
   if @organization.save
     session[:org_id] = @organization.id
-    redirect '/'
+    redirect '/organization/profile'
   else
     @errors = @organization.errors.full_messages 
     erb :'organizations/new'
@@ -48,7 +57,7 @@ post '/organizations/session' do
   @errors = []
   if @org && @org.authenticate(params[:password])
     session[:org_id] = @org.id
-    redirect '/'
+    redirect '/organizations/profile'
   else
     @errors << "Invalid login"
     erb :'organizations/login'
