@@ -9,3 +9,10 @@ get '/students/:id/organizations' do
   @student = Student.find(params[:id])
   erb :'organizations/index'
 end
+
+get '/organizations/:id/students' do
+  #TODO: refactor erb file using partials
+  @organization = Organization.find(params[:id])
+  @students = @organization.students
+  erb :'favourites/index'
+end
