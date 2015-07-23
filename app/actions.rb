@@ -8,23 +8,20 @@ helpers do
   def current_student?
     session[:id]
   end
+  def current_org
+    Organization.find(session[:org_id]) if session[:org_id]
+  end
+  def current_org?
+    session[:org_id]
+  end
 end
 
 get '/' do
   erb :index
 end
 
-# temporary routes
-get '/registered' do
-  'registered! '
-end
-
-get '/loggedin' do
-  "logged in!"
-end
-
 get '/logout' do
   session[:id] = nil
-  'logged out'
-  # redirect '/'
+  session[:org_id] = nil
+  redirect '/'
 end

@@ -5,6 +5,21 @@ get '/organizations' do
   erb :'organizations/index'
 end
 
+# student sign up page
+get '/student/register' do
+  @student = Student.new
+  @errors = [] #TODO: create a helper for checking errors
+  erb :'students/new'
+end
+
+# student login page
+get '/student/session' do
+  @student = Student.new
+  @errors = []
+  erb :'students/login'
+end
+
+
 #an organization can see a list of interested students
 get '/organizations/:id/students' do
   #TODO: refactor erb file using partials
