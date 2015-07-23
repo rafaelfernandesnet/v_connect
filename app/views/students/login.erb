@@ -1,13 +1,18 @@
-<h2>Login</h2>
 
 <%= erb :'partials/_errors' %>
+<div class="container-full">
+  <div class="center-login">
+    <h2>Login</h2>
+    <form method="post" action="/students/session">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" class="form-control" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
 
-<form method="post" action="/students/session">
-  <div class="form-group">
-    <input type="email" name="email" class="form-control" placeholder="Email">
-  </div>
-  <div class="form-group">
-    <input type="password" name="password" class="form-control" placeholder="Password">
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
+</div>
