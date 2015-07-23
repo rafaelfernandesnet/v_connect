@@ -1,4 +1,8 @@
-<h1> My Favourite Organizations </h1>
+<% if @student %>
+  <h1> My Favourite Organizations </h1>
+<% else %>
+  <h1> All Organizations</h1>
+<% end %> 
 
 <% @organizations.each do |organization| %>
   <div> 

@@ -1,4 +1,8 @@
-<h1> Our Interested Students </h1>
+<% if @organization %>
+  <h1> Our Interested Students </h1> 
+<% else %>
+  <h1> All students </h1>
+<% end %>
 
 <% @students.each do |student| %>
   <div> 
