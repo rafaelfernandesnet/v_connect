@@ -29,3 +29,5 @@ require APP_ROOT.join('config', 'database')
 
 # Load the routes / actions
 require APP_ROOT.join('app', 'actions')
+require APP_ROOT.join('app', 'actions_student')
+require APP_ROOT.join('app', 'actions_organization')

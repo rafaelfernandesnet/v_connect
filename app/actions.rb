@@ -1,15 +1,15 @@
 # Homepage (Root path)
 get '/' do
-  session[:id] = Student.find_by(id:1)
   erb :index
 end
 
-# this will route to a student's profile after they log in
-# expect session[:id] to be an id of a student to be set
-get '/students/profile' do
-	@student = Student.find_by(id: session[:id])
-	if @student
-		erb :'/students/show'
-	else redirect '/'
-	end
+
+# TODO: authorize logged in student
+helpers do
+  def current_student
+    Student.find(session[:id]) if session[:id]
+  end
+  def current_student?
+    session[:id].nil?
+  end
 end
