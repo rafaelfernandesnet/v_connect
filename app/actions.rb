@@ -37,6 +37,7 @@ get '/student/register' do
 end
 
 post '/students' do
+  @errors = [] #TODO: create a helper for checking errors
   @student = Student.new(
     email: params[:email]
   )
@@ -44,8 +45,10 @@ post '/students' do
   @student.password_confirmation = params[:password2]
   if @student.save
     # TODO: login
+    # TODO: redirect to the student profile page
     redirect '/registered'
   else
+    @errors = @student.errors.full_messages 
     erb :'students/new'
   end
 
