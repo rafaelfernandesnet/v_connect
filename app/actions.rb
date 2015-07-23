@@ -12,5 +12,4 @@ get 'students/profile' do
 		erb: '/students/show'
 	else redirect '/'
 	end
-
 end
