@@ -32,7 +32,7 @@ post '/students' do
   @student.password = params[:password]
   @student.password_confirmation = params[:password2]
   if @student.save
-    # TODO: login and redirect to the student profile page
+    session[:id] = @student.id
     redirect '/'
   else
     @errors = @student.errors.full_messages 
@@ -41,7 +41,7 @@ post '/students' do
 end
 
 # login student
-post '/student/session' do
+post '/students/session' do
   @student = Student.find_by(email: params[:email])
   @errors = []
   if @student && @student.authenticate(params[:password])
